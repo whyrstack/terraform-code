@@ -1,4 +1,4 @@
-#
+# Configure AWS CLI with secret access token
 #
 terraform {
   required_providers {
