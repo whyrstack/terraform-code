@@ -8,8 +8,30 @@ module "my_vpc_security_group" {
   description = "Security Group with SSH port open for everybody (IPv4 CIDR), egress ports are all world open"
   vpc_id = module.my_vpc.vpc_id
   # Ingress Rules & CIDR Blocks
-  ingress_rules = ["ssh-tcp", "https-6443-tcp"]
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "ssh-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      description = "http-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "https-tcp"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
+
   # Egress Rule - all-all open
   egress_rules = ["all-all"]
   tags = {

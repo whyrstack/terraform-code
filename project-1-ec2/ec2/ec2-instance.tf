@@ -17,7 +17,7 @@ module "ec2_instance" {
   key_name               = var.my_ssh_key
   vpc_security_group_ids = each.value.vpc_security_group_ids
   subnet_id              = each.value.subnet_ids
-  user_data              = file("${path.module}/startup-script.sh")    
+ #user_data              = file("${path.module}/startup-script.sh")    
 
   associate_public_ip_address = true
 
