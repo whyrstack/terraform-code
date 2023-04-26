@@ -8,6 +8,7 @@ module "my_vpc_security_group" {
   description = "Security Group with SSH port open for everybody (IPv4 CIDR), egress ports are all world open"
   vpc_id = module.my_vpc.vpc_id
   # Ingress Rules & CIDR Blocks
+  
   ingress_with_cidr_blocks = [
     {
       from_port   = 22
@@ -29,6 +30,13 @@ module "my_vpc_security_group" {
       protocol    = "tcp"
       description = "https-tcp"
       cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 6443
+      to_port     = 6443
+      protocol    = "tcp"
+      description = "kubeapi-tcp"
+      cidr_blocks = "10.10.0.0/16"
     }
   ]
 
