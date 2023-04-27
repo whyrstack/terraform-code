@@ -8,6 +8,11 @@ output "my_private_ips" {
     #value = module.ec2_instance.private_ip
     value = [for s in module.ec2_instance : s.private_ip]
 }
+
+output "my_efs_dns_name" {
+    value = aws_efs_file_system.my_efs.dns_name
+  
+}
 /*
 # EFS Details
 output "my_efs_name" {
@@ -22,7 +27,6 @@ output "my_efs_dns_name" {
 output "my_efs_size" {
     value = [for s in module.efs : s.size_in_bytes]
 }
-
 
 
 /*
