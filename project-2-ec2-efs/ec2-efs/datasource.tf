@@ -1,8 +1,3 @@
-# KMS key 
-data "aws_kms_key" "by_alias" {
-  key_id = "alias/my-kms-key"
-}
-
 #
 # Get latest AMI ID for Amazon Linux2 OS
 data "aws_ami" "amzlinux2" {
@@ -25,7 +20,6 @@ data "aws_ami" "amzlinux2" {
     values = [ "x86_64" ]
   }
 }
-
 # 
 # Declare the data source for availability zones
 data "aws_availability_zones" "available" {
@@ -35,7 +29,6 @@ data "aws_availability_zones" "available" {
     values = ["eu-central-1a", "eu-central-1b"]
   }
 }
-
 # 
 # Declare the data source for security groups
 data "aws_security_groups" "selected" {
@@ -44,7 +37,6 @@ data "aws_security_groups" "selected" {
       values = ["myVPCsg*"]
     }
 }
-
 # 
 # Declare the data source for vpcs
 data "aws_vpcs" "vpc" {  
@@ -52,7 +44,6 @@ data "aws_vpcs" "vpc" {
       Name = "myVPC"
   }
 }
-
 # 
 # Declare the data source for public subnets
 data "aws_subnets" "subnets_public" {
@@ -68,3 +59,9 @@ data "aws_subnets" "subnets_private" {
       Name = "myVPC-private*"
     }
 }
+/*
+# KMS key 
+data "aws_kms_key" "by_alias" {
+  key_id = "alias/my-kms-key"
+}
+*/
